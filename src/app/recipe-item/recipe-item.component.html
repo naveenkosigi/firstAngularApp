@@ -1,0 +1,17 @@
+<div class="row">
+    <div class="col-sm-1">           
+    </div>
+        <div class="col-sm-5">
+            <div class="ui card" (click)="clickedRecipe()" onclick="return false">
+                <a class="image" href="#">
+                    <img src="{{recipe.imagePath}}">
+                </a>
+                <div class="content">
+                    <a class="header" href="#" #recipeName>{{recipe.name}}</a>
+                    <div class="meta">
+                        <a>{{recipe.description}}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
