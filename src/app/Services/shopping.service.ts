@@ -27,4 +27,14 @@ export class shoppingService{
     getIngredientByIndex(index:number):ingredient{
       return this.ingredients[index];
     }
+
+    updateIngredientByIndex(index:number,ingredient:ingredient):void{
+      this.ingredients[index]=ingredient;
+      this.updateIngredients.next(true);
+    }
+
+    deleteIngredientByIndex(index:number):void{
+      this.ingredients.splice(index,1);
+      this.updateIngredients.next(true);
+    }
 }

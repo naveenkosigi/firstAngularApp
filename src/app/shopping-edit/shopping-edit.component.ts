@@ -10,6 +10,7 @@ import {shoppingService} from '../Services/shopping.service';
 })
 export class ShoppingEditComponent implements OnInit {
   editMode:boolean=false;
+  editedIndex:number=-1;
   @ViewChild('f',{static:false}) form:NgForm;
 
   constructor(private shoppingService:shoppingService) { }
@@ -22,15 +23,29 @@ export class ShoppingEditComponent implements OnInit {
         name:ingredient.name,
         amount:ingredient.cost
       });
+      this.editedIndex=index;
     });
   }
 
   addIngredient(form:NgForm){
 
-    this.shoppingService.addIngredient(new ingredient(form.value.name,form.value.amount));
-    console.log(this.shoppingService);
+    if(this.editMode){
+      this.shoppingService.updateIngredientByIndex(this.editedIndex,new ingredient(form.value.name,form.value.amount));
+      this.shoppingService.updateIngredients.next(true);
+    }
+    else{
+      this.shoppingService.addIngredient(new ingredient(form.value.name,form.value.amount));
+      console.log(this.shoppingService);
+    }
+    this.editMode=false;
+    this.editedIndex=-1;
+    this.form.reset();
   }
 
-
+  deleteIngredient(){
+    if(this.form.valid && this.editMode){
+      this.shoppingService.deleteIngredientByIndex(this.editedIndex);
+    }
+  }
 
 }
