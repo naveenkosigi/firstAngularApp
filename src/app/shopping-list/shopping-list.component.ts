@@ -10,7 +10,7 @@ import { alertPrompt } from '../canDeactivate';
 })
 export class ShoppingListComponent implements OnInit,alertPrompt {
   ingredients : ingredient[]=[];
-  
+
   constructor(private shoppingService:shoppingService,private route:ActivatedRoute) {
     this.ingredients=shoppingService.getIngredients();
   }
@@ -28,9 +28,9 @@ export class ShoppingListComponent implements OnInit,alertPrompt {
         let cost=params["cost"];
         this.shoppingService.addIngredient(new ingredient(item,cost,this.shoppingService.getIngredients.length-1));
       }
-      
+
     })*/
-    
+
   }
 
   addIngredient(ingredient){
@@ -41,5 +41,8 @@ export class ShoppingListComponent implements OnInit,alertPrompt {
     return confirm("Are you sure few items may be discarded");
   }
 
+  editItem(i:number){
+    this.shoppingService.editIngredient.next(i);
+  }
 
 }

@@ -7,6 +7,7 @@ import {ingredient} from '../models/ingredient.model';
 @Injectable()
 export class shoppingService{
     updateIngredients=new Subject<boolean>();
+    editIngredient=new Subject<Number>();
     ingredients : ingredient[]=[];
 
     constructor(){
@@ -21,5 +22,9 @@ export class shoppingService{
 
     getIngredients():ingredient[]{
         return this.ingredients.slice();
+    }
+
+    getIngredientByIndex(index:number):ingredient{
+      return this.ingredients[index];
     }
 }

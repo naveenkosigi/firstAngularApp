@@ -3,18 +3,19 @@
     <div class="col-sm-9">
         <app-shopping-edit></app-shopping-edit>
     </div>
-</div>    
+</div>
     <div class="row">
         <hr>
         <ul class="list-group">
-            <a  
-                class="list-group-item" 
+            <a
+                class="list-group-item"
                 style="cursor: pointer;"
-                *ngFor="let ingredient of ingredients">
+                *ngFor="let ingredient of ingredients;let i=index"
+                (click)="editItem(i)">
                 {{ingredient.name}} ({{ingredient.cost}})
             </a>
         </ul>
     </div>
 
     <router-outlet></router-outlet>
-    
+
