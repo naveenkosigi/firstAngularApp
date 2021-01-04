@@ -21,7 +21,7 @@ export class ShoppingEditComponent implements OnInit {
       this.form.setValue({
         name:ingredient.name,
         amount:ingredient.cost
-      })
+      });
     });
   }
 
