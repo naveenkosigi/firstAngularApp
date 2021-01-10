@@ -8,7 +8,7 @@ export class recipeService{
     recipes:recipe[]=[];
     recipeSelected=new Subject<[recipe,true]>();
     showRecipeDetails:boolean=false;
-    
+
     constructor() {
         let index=0;
         this.recipes.push(new recipe('Pizza',"American Pizza","https://img.buzzfeed.com/thumbnailer-prod-us-east-1/video-api/assets/216054.jpg",[new ingredient("Bread",40)],++index));
@@ -17,5 +17,9 @@ export class recipeService{
 
     getRecipes():recipe[]{
         return this.recipes.slice();
+    }
+
+    getRecipeByIndex(index:number):recipe{
+       return this.recipes[index];
     }
 }

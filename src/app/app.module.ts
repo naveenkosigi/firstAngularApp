@@ -21,7 +21,7 @@ import { canDeactivateGuard } from './canDeactivate';
 import { DefaultTemplateRecipeDetailComponent } from './default-template-recipe-detail/default-template-recipe-detail.component';
 import { EditRecipeComponent } from './edit-recipe/edit-recipe.component';
 import { NewRecipeComponent } from './new-recipe/new-recipe.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -46,7 +46,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     appRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [shoppingService,authService,authGuard,canDeactivateGuard],
   bootstrap: [AppComponent]
