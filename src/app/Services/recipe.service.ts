@@ -1,5 +1,5 @@
+import { recipe } from './../models/recipe.model';
 import { EventEmitter, Injectable } from '@angular/core';
-import {recipe} from '../models/recipe.model';
 import {ingredient} from '../models/ingredient.model';
 import { Subject } from 'rxjs';
 
@@ -7,6 +7,7 @@ import { Subject } from 'rxjs';
 export class recipeService{
     recipes:recipe[]=[];
     recipeSelected=new Subject<[recipe,true]>();
+    addedRecipe=new Subject<true>();
     showRecipeDetails:boolean=false;
 
     constructor() {
@@ -21,5 +22,16 @@ export class recipeService{
 
     getRecipeByIndex(index:number):recipe{
        return this.recipes[index];
+    }
+
+    addNewRecipe(recipe:recipe){
+     recipe.id=this.recipes.length+1;
+     this.recipes.push(recipe);
+     this.addedRecipe.next(true);
+    }
+
+    addRecipeByIndex(recipe:recipe,index:number){
+      this.recipes[index]=recipe;
+      this.recipes[index]['id']=index+1;
     }
 }
