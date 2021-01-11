@@ -4,7 +4,7 @@ import { recipeService } from './../Services/recipe.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Form, FormArray, FormControl, FormGroup} from '@angular/forms';
+import { Form, FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-edit-recipe',
@@ -39,17 +39,17 @@ export class EditRecipeComponent implements OnInit {
       if(ingredients){
         for(const ing of ingredients){
           formArray.push(new FormGroup({
-            'ingredient':new FormControl(ing.name),
-            'amount':new FormControl(ing.cost)
+            'ingredient':new FormControl(ing.name,Validators.required),
+            'amount':new FormControl(ing.cost,[Validators.required,Validators.pattern(/^[1-9]\d*$/)])
           }));
         }
       }
     }
 
     this.form=new FormGroup({
-      'name':new FormControl(name),
-      'imagePath':new FormControl(imagePath),
-      'description':new FormControl(description),
+      'name':new FormControl(name,Validators.required),
+      'imagePath':new FormControl(imagePath,Validators.required),
+      'description':new FormControl(description,Validators.required),
       'ingredients':formArray
     })
   }
@@ -59,10 +59,10 @@ export class EditRecipeComponent implements OnInit {
   }
 
   addIngredient():void{
-    (<FormArray>this.form.get('ingredients')['controls']).push(
+    (<FormArray>this.form.get('ingredients')).push(
       new FormGroup({
-        "ingredient":new FormControl(),
-        "amount":new FormControl()
+        "ingredient":new FormControl(null,Validators.required),
+        "amount":new FormControl(null,[Validators.required,Validators.pattern(/^[1-9]\d*$/)])
       })
     );
   }
