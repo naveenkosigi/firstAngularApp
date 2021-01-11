@@ -14,6 +14,7 @@ export class recipeService{
         let index=0;
         this.recipes.push(new recipe('Pizza',"American Pizza","https://img.buzzfeed.com/thumbnailer-prod-us-east-1/video-api/assets/216054.jpg",[new ingredient("Bread",40)],++index));
         this.recipes.push(new recipe('Noodles','Chinese Special Cuisine','https://www.loveandoliveoil.com/wp-content/uploads/2015/03/soy-sauce-noodlesH2.jpg',[new ingredient("Dry noodles",60)],++index));
+        window['recipeService']=this;
     }
 
     getRecipes():recipe[]{

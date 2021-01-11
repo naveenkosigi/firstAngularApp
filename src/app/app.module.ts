@@ -1,3 +1,4 @@
+import { recipeService } from './Services/recipe.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { Component, NgModule } from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
@@ -49,7 +50,7 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [shoppingService,authService,authGuard,canDeactivateGuard],
+  providers: [shoppingService,authService,authGuard,canDeactivateGuard,recipeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
