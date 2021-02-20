@@ -1,3 +1,4 @@
+import { RecipeResolver } from './resolvers/recipe.resolver';
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from '@angular/router';
 import { authGuard } from './authGuard';
@@ -16,10 +17,10 @@ const routes:Routes=[
         children:[
             {path:"" , component:DefaultTemplateRecipeDetailComponent},
             {path:"new", component:EditRecipeComponent},
-            {path:':id' , component:RecipeDetailsComponent},
-            {path:':id/edit', component:EditRecipeComponent}
+            {path:':id' , component:RecipeDetailsComponent,resolve:[RecipeResolver]},
+            {path:':id/edit', component:EditRecipeComponent,resolve:[RecipeResolver]}
         ]
-    },    
+    },
     { path:'shoppinglist',canActivate:[authGuard], canDeactivate:[canDeactivateGuard], component:ShoppingListComponent},
     { path:'**', redirectTo:'recipes'}
 ];

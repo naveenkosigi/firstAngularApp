@@ -23,6 +23,6 @@ export class HeaderComponent implements OnInit {
   }
 
   getData(){
-    this.httpService.getRecipes();
+    this.httpService.getRecipes().subscribe();
   }
 }
