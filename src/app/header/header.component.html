@@ -5,7 +5,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-        </button>  
+        </button>
         <a class="navbar-brand">INSTANT SHOP</a>
       </div>
     <div class="collapse navbar-collapse" id="#myNavbar">
@@ -16,12 +16,12 @@
 
         <ul class="nav navbar-nav navbar-right">
            <li class="dropdown" dropDown>
-             <a class="dropdown-toggle" data-toggle="dropdown">Test
+             <a class="dropdown-toggle" data-toggle="dropdown">Manage Data
                <span class="caret"></span>
              </a>
              <ul class="dropdown-menu">
-               <li><a>Test 1</a></li>
-               <li><a>Test 2</a></li>
+               <li><a (click)="getData()">Fetch Data</a></li>
+               <li><a (click)="saveData()">Save Data</a></li>
              </ul>
            </li>
         </ul>

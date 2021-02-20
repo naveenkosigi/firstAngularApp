@@ -35,4 +35,9 @@ export class recipeService{
       this.recipes[index]=recipe;
       this.recipes[index]['id']=index+1;
     }
+
+    setRecipes(recipes:recipe[]){
+      this.recipes=recipes;
+      this.addedRecipe.next(true);
+    }
 }

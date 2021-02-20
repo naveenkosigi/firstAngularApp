@@ -23,6 +23,7 @@ import { DefaultTemplateRecipeDetailComponent } from './default-template-recipe-
 import { EditRecipeComponent } from './edit-recipe/edit-recipe.component';
 import { NewRecipeComponent } from './new-recipe/new-recipe.component';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
 
 
 
@@ -48,7 +49,8 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
     BrowserModule,
     appRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [shoppingService,authService,authGuard,canDeactivateGuard,recipeService],
   bootstrap: [AppComponent]
