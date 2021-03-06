@@ -1,13 +1,19 @@
 <div class="container">
-  <div class="form-group">
-    <label for="email">Email address:</label>
-    <input type="email" class="form-control" id="email">
-  </div>
-  <div class="form-group">
-    <label for="pwd">Password:</label>
-    <input type="password" class="form-control" id="pwd">
-  </div>
+  <form #authForm="ngForm">
+    <div *ngIf="isLoading">
+      <app-loader></app-loader>
+    </div>
+    <div class="form-group">
+      <label for="email">Email address:</label>
+      <input type="email" class="form-control" id="email" name="email" ngModel required email>
+    </div>
+    <div class="form-group">
+      <label for="pwd">Password:</label>
+      <input type="password" class="form-control" id="password" name="password" ngModel required minlength="6">
+    </div>
 
-  <button type="button" class="btn btn-primary">Log-In</button> |
-  <button type="button" class="btn btn-primary">Sign-Up</button>
-</div>
+    <button type="button" class="btn btn-primary" [disabled]="!authForm.valid" (click)="authAction(authForm)">Log-In</button> |
+    <button type="button" class="btn btn-primary" [disabled]="!authForm.valid" (click)="authAction(authForm)">Sign-Up</button>
+
+  </form>
+  </div>

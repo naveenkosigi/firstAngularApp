@@ -25,6 +25,7 @@ import { NewRecipeComponent } from './new-recipe/new-recipe.component';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { AuthenticateComponent } from './authenticate/authenticate.component';
+import { LoaderComponent } from './loader/loader.component';
 
 
 
@@ -45,7 +46,8 @@ import { AuthenticateComponent } from './authenticate/authenticate.component';
     DefaultTemplateRecipeDetailComponent,
     EditRecipeComponent,
     NewRecipeComponent,
-    AuthenticateComponent
+    AuthenticateComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
