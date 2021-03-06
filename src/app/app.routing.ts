@@ -1,3 +1,4 @@
+import { AuthenticateComponent } from './authenticate/authenticate.component';
 import { RecipeResolver } from './resolvers/recipe.resolver';
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from '@angular/router';
@@ -22,6 +23,7 @@ const routes:Routes=[
         ]
     },
     { path:'shoppinglist',canActivate:[authGuard], canDeactivate:[canDeactivateGuard], component:ShoppingListComponent},
+    {path :'authenticate',component:AuthenticateComponent},
     { path:'**', redirectTo:'recipes'}
 ];
 
