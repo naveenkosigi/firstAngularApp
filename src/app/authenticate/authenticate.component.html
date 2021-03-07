@@ -12,8 +12,8 @@
       <input type="password" class="form-control" id="password" name="password" ngModel required minlength="6">
     </div>
 
-    <button type="button" class="btn btn-primary" [disabled]="!authForm.valid" (click)="authAction(authForm)">Log-In</button> |
-    <button type="button" class="btn btn-primary" [disabled]="!authForm.valid" (click)="authAction(authForm)">Sign-Up</button>
+    <button type="button" class="btn btn-primary" [disabled]="!authForm.valid" (click)="authAction(authForm,'login')">Log-In</button> |
+    <button type="button" class="btn btn-primary" [disabled]="!authForm.valid" (click)="authAction(authForm,'signup')">Sign-Up</button>
 
   </form>
   </div>

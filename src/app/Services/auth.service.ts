@@ -26,4 +26,12 @@ export class authenticateService{
       }
     );
   }
+
+  logIn(data:Object) : Observable<any>{
+    return this.http.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBbW9wWOh0zG9Axt5VALU6kz-TnBdJkJLo',
+    {
+      ...data,
+      returnSecureToken:true
+    });
+  }
 }

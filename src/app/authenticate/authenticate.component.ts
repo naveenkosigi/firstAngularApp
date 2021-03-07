@@ -15,22 +15,42 @@ export class AuthenticateComponent implements OnInit {
     this.isLoading=false;
   }
 
-  authAction(authForm:NgForm){
+  authAction(authForm:NgForm,actionType:String){
     this.isLoading=true;
-    this.authService.signUp(authForm.value).subscribe(
-      response => {
-        console.log(response);
-      },
-      err => {
-        console.log(err);
-        authForm.reset();
-        this.isLoading=false;
-      },
-      () => {
-        console.log("done");
-        authForm.reset();
-        this.isLoading=false;
-      }
-    );
+    if(actionType === 'login'){
+      this.authService.logIn(authForm.value).subscribe(
+        response => {
+          console.log(response);
+        },
+        err => {
+          console.log(err);
+          authForm.reset();
+          this.isLoading=false;
+        },
+        () => {
+          console.log("done");
+          authForm.reset();
+          this.isLoading=false;
+        }
+      );
+    }
+    else{
+      this.authService.signUp(authForm.value).subscribe(
+        response => {
+          console.log(response);
+        },
+        err => {
+          console.log(err);
+          authForm.reset();
+          this.isLoading=false;
+        },
+        () => {
+          console.log("done");
+          authForm.reset();
+          this.isLoading=false;
+        }
+      );
+    }
+
   }
 }
