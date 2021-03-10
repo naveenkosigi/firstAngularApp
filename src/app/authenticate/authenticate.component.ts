@@ -1,6 +1,7 @@
 import { authenticateService } from './../Services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-authenticate',
@@ -9,7 +10,7 @@ import { NgForm } from '@angular/forms';
 })
 export class AuthenticateComponent implements OnInit {
   isLoading:Boolean;
-  constructor(private authService:authenticateService) { }
+  constructor(private authService:authenticateService,private router:Router) { }
 
   ngOnInit(): void {
     this.isLoading=false;
@@ -31,6 +32,7 @@ export class AuthenticateComponent implements OnInit {
           console.log("done");
           authForm.reset();
           this.isLoading=false;
+          this.router.navigate(['/recipes']);
         }
       );
     }
@@ -48,6 +50,7 @@ export class AuthenticateComponent implements OnInit {
           console.log("done");
           authForm.reset();
           this.isLoading=false;
+          this.router.navigate(['/recipes']);
         }
       );
     }

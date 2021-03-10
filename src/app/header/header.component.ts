@@ -1,3 +1,4 @@
+import { authenticateService } from './../Services/auth.service';
 import { httpService } from './../Services/http.service';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
@@ -8,9 +9,13 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   @Output() navigateTo:EventEmitter<any>=new EventEmitter<{page:String}>();
-  constructor(private httpService:httpService) { }
+  isLoggedIn:boolean=false;
+  constructor(private httpService:httpService,private authService:authenticateService) { }
 
   ngOnInit(): void {
+    this.authService.userTrigger.subscribe(userData => {
+      this.isLoggedIn = !!userData;
+    });
   }
 
   navigate(page){

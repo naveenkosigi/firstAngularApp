@@ -10,14 +10,17 @@
       </div>
     <div class="collapse navbar-collapse" id="#myNavbar">
         <ul class="nav navbar-nav">
-            <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"><a [routerLink]="['/recipes']">RECIPES</a></li>
-            <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/shoppinglist">SHOPPING LIST</a></li>
-            <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/authenticate">AUTHENTICATE</a></li>
+            <li *ngIf="isLoggedIn" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"><a [routerLink]="['/recipes']">RECIPES</a></li>
+            <li *ngIf="isLoggedIn" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/shoppinglist">SHOPPING LIST</a></li>
+            <li *ngIf="!isLoggedIn" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/authenticate">AUTHENTICATE</a></li>
        </ul>
 
         <ul class="nav navbar-nav navbar-right">
-           <li class="dropdown" dropDown>
-             <a class="dropdown-toggle" data-toggle="dropdown">Manage Data
+          <li *ngIf="isLoggedIn">
+            <a style="cursor: pointer;">LOGOUT</a>
+          </li>
+           <li *ngIf="isLoggedIn" class="dropdown" dropDown>
+             <a class="dropdown-toggle" data-toggle="dropdown">MANAGE DATA
                <span class="caret"></span>
              </a>
              <ul class="dropdown-menu">

@@ -1,6 +1,8 @@
+import { tap } from 'rxjs/operators';
+import { user } from './../models/user.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from "@angular/core";
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 interface responseData{
     "idToken": string,
@@ -12,7 +14,7 @@ interface responseData{
 
 @Injectable({providedIn:'root'})
 export class authenticateService{
-
+  userTrigger = new Subject<user>();
   constructor(private http:HttpClient){
 
   }
@@ -24,6 +26,13 @@ export class authenticateService{
         ...data,
         returnSecureToken:true
       }
+    )
+    .pipe(
+      tap(data => {
+        let expDate=new Date(new Date().getTime() + +data.expiredsIn * 1000);
+        let userData=new user(data.email,data.localId,data.idToken,expDate);
+        this.userTrigger.next(userData);
+      })
     );
   }
 
@@ -32,6 +41,14 @@ export class authenticateService{
     {
       ...data,
       returnSecureToken:true
-    });
+    }
+    )
+    .pipe(
+      tap(data => {
+        let expDate=new Date(new Date().getTime() + +data.expiredsIn * 1000);
+        let userData=new user(data.email,data.localId,data.idToken,expDate);
+        this.userTrigger.next(userData);
+      })
+    );
   }
 }
