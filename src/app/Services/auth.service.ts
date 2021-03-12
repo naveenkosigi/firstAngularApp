@@ -2,7 +2,7 @@ import { tap } from 'rxjs/operators';
 import { user } from './../models/user.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from "@angular/core";
-import { Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
 interface responseData{
     "idToken": string,
@@ -14,7 +14,7 @@ interface responseData{
 
 @Injectable({providedIn:'root'})
 export class authenticateService{
-  userTrigger = new Subject<user>();
+  userTrigger = new BehaviorSubject<user>(null);
   constructor(private http:HttpClient){
 
   }

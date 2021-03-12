@@ -1,3 +1,4 @@
+import { HttpInterceptor, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { recipeService } from './Services/recipe.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { Component, NgModule } from '@angular/core';
@@ -26,6 +27,8 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { AuthenticateComponent } from './authenticate/authenticate.component';
 import { LoaderComponent } from './loader/loader.component';
+import { authenticateService } from './Services/auth.service';
+import { authInterceptor } from './Services/auth.interceptor';
 
 
 
@@ -56,7 +59,7 @@ import { LoaderComponent } from './loader/loader.component';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [shoppingService,authService,authGuard,canDeactivateGuard,recipeService],
+  providers: [shoppingService,authService,authGuard,canDeactivateGuard,recipeService,{provide:HTTP_INTERCEPTORS,useClass:authInterceptor,multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
