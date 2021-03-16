@@ -46,9 +46,10 @@ export class authenticateService{
     )
     .pipe(
       tap(data => {
-        let expDate=new Date(new Date().getTime() + +data.expiredsIn * 1000);
+        let expDate=new Date(new Date().getTime() + +data.expiresIn * 1000);
         let userData=new user(data.email,data.localId,data.idToken,expDate);
         this.userTrigger.next(userData);
+        localStorage.setItem('auth',JSON.stringify(userData));
       })
     );
   }
@@ -56,5 +57,16 @@ export class authenticateService{
   logOut(){
     this.userTrigger.next(null);
     this.router.navigateByUrl("/authenticate");
+  }
+
+  autoLogin(){
+    const savedAuth=localStorage.getItem('auth');
+    if(savedAuth){
+      let userData=JSON.parse(savedAuth);
+      userData=new user(userData.email,userData.id,userData._token,new Date(userData.tokenExp));
+      if(userData.token){
+        this.userTrigger.next(userData);
+      }
+    }
   }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { authService } from './authService';
+import { authenticateService } from './Services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -10,19 +10,19 @@ export class AppComponent implements OnInit {
   title = 'recipeApp';
   currentPage="recipes";
 
-  constructor(private authService:authService){
+  constructor(private authService:authenticateService){
 
   }
 
   ngOnInit(){
-
+    this.authService.autoLogin();
   }
 
   setPage(page){
     console.log("clicked",page);
     this.currentPage=page.page;
   }
-
+/*
   authenticate(){
     if(this.authService.loggedIn){
       this.authService.logOut();
@@ -30,4 +30,5 @@ export class AppComponent implements OnInit {
     }
     this.authService.logIn();
   }
+  */
 }
