@@ -3,6 +3,7 @@ import { user } from './../models/user.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { Router } from '@angular/router';
 
 interface responseData{
     "idToken": string,
@@ -15,7 +16,7 @@ interface responseData{
 @Injectable({providedIn:'root'})
 export class authenticateService{
   userTrigger = new BehaviorSubject<user>(null);
-  constructor(private http:HttpClient){
+  constructor(private http:HttpClient,private router:Router){
 
   }
 
@@ -50,5 +51,10 @@ export class authenticateService{
         this.userTrigger.next(userData);
       })
     );
+  }
+
+  logOut(){
+    this.userTrigger.next(null);
+    this.router.navigateByUrl("/authenticate");
   }
 }

@@ -30,4 +30,8 @@ export class HeaderComponent implements OnInit {
   getData(){
     this.httpService.getRecipes().subscribe();
   }
+
+  logOut(){
+    this.authService.logOut();
+  }
 }
